@@ -1,0 +1,17 @@
+findfile>=1.7.9.1
+autocuda>=0.9
+metric-visualizer>=0.4.21
+spacy
+networkx
+seqeval
+update-checker
+typing_extensions
+tqdm
+pytorch_warmup
+termcolor
+gitpython
+gdown>=4.4.0
+transformers>4.5
+torch>1.0.0, <1.11.0
+sentencepiece
+protobuf<=3.20.0
