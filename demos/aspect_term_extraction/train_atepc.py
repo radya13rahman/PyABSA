@@ -26,7 +26,7 @@ atepc_config.lcf = 'cdm'
 atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
 atepc_config.hidden_dim = 1024
 atepc_config.embed_dim = 1024
-atepc_config.num_epoch = 15
+atepc_config.num_epoch = 20
 dataset_path = DatasetItem('100.CustomDataset')
 # or your local dataset: dataset_path = 'your local dataset path'
 
@@ -50,7 +50,7 @@ examples = ['But the staff was so nice to us .',
             ]
 
 inference_source = ABSADatasetList.Laptop14
-atepc_result = aspect_extractor.extract_aspect(inference_source=inference_source,
+atepc_result = aspect_extractor.extract_aspect(inference_source=examples,
                                                save_result=True,
                                                print_result=True,  # print the result
                                                pred_sentiment=True,  # Predict the sentiment of extracted aspect terms
