@@ -18,12 +18,15 @@ from pyabsa.functional import Trainer, ATEPCTrainer
 from pyabsa.functional import ABSADatasetList
 from pyabsa.functional import ATEPCConfigManager
 from pyabsa.functional.dataset import DatasetItem
+import torch
 
 atepc_config = ATEPCConfigManager.get_atepc_config_english()
 
 atepc_config.pretrained_bert = 'microsoft/deberta-v3-base'
 atepc_config.lcf = 'cdm'
 atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
+atepc_config.optimizer = torch.optim.Adagrad
+# atepc_config.learning_rate = 0.02
 atepc_config.num_epoch = 20
 dataset_path = DatasetItem('100.CustomDataset')
 # or your local dataset: dataset_path = 'your local dataset path'
