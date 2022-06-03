@@ -25,9 +25,8 @@ atepc_config = ATEPCConfigManager.get_atepc_config_english()
 atepc_config.pretrained_bert = 'microsoft/deberta-v3-base'
 atepc_config.lcf = 'cdm'
 atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
-atepc_config.l2reg = 0.00000001
-atepc_config.batch_size = 32
-atepc_config.num_epoch = 30
+atepc_config.SRD = 5
+atepc_config.num_epoch = 20
 dataset_path = DatasetItem('100.CustomDataset')
 # or your local dataset: dataset_path = 'your local dataset path'
 
