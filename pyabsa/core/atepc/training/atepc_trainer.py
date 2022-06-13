@@ -17,7 +17,7 @@ import torch
 import torch.nn.functional as F
 import tqdm
 from seqeval.metrics import classification_report
-from sklearn.metrics import f1_score
+from sklearn.metrics import confusion_matrix, f1_score
 from torch import cuda
 from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler, TensorDataset)
 from transformers import AutoTokenizer, AutoModel
@@ -448,7 +448,11 @@ class Instructor:
 
             test_f1 = f1_score(torch.argmax(test_apc_logits_all, -1).cpu(), test_polarities_all.cpu(),
                             labels=list(range(self.opt.polarities_dim)), average='macro')
-            print(test_f1)
+            
+            conf_mtrx = confusion_matrix(torch.argmax(test_apc_logits_all, -1).cpu(), test_polarities_all.cpu(),
+                            labels=list(range(self.opt.polarities_dim)))
+
+            print(conf_mtrx)
 
             test_acc = round(test_acc * 100, 2)
             test_f1 = round(test_f1 * 100, 2)
