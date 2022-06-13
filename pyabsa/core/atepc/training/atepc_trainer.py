@@ -443,7 +443,9 @@ class Instructor:
             test_acc = n_test_correct / n_test_total
 
             test_f1 = f1_score(torch.argmax(test_apc_logits_all, -1).cpu(), test_polarities_all.cpu(),
-                               labels=list(range(self.opt.polarities_dim)), average='macro')
+                            labels=list(range(self.opt.polarities_dim)), average='macro')
+
+            print(test_f1)
 
             test_acc = round(test_acc * 100, 2)
             test_f1 = round(test_f1 * 100, 2)

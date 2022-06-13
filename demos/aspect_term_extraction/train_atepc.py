@@ -27,7 +27,7 @@ atepc_config.lcf = 'cdm'
 # atepc_config.hidden_dim = 1024
 # atepc_config.embed_dim = 1024
 atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
-atepc_config.num_epoch = 20
+atepc_config.num_epoch = 2
 dataset_path = DatasetItem('100.CustomDataset')
 # or your local dataset: dataset_path = 'your local dataset path'
 
