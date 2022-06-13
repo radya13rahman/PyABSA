@@ -306,7 +306,7 @@ class Instructor:
                         current_apc_test_acc = apc_result['apc_test_acc']
                         current_apc_test_f1 = apc_result['apc_test_f1']
                         current_ate_test_f1 = round(ate_result, 2)
-                        print('hahai')
+                        
 
                         postfix = 'Epoch:{} | '.format(epoch)
 
@@ -321,6 +321,8 @@ class Instructor:
                                                                                          )
                         postfix += 'ATE_F1: {}(max:{})'.format(current_ate_test_f1, self.opt.max_test_metrics[
                             'max_ate_test_f1'])
+
+                        postfix += 'hahai'
                     else:
                         if self.opt.save_mode and epoch >= self.opt.evaluate_begin:
                             save_model(self.opt, self.model, self.tokenizer, save_path + '_{}/'.format(loss.item()))
