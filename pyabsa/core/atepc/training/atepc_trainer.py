@@ -306,6 +306,7 @@ class Instructor:
                         current_apc_test_acc = apc_result['apc_test_acc']
                         current_apc_test_f1 = apc_result['apc_test_f1']
                         current_ate_test_f1 = round(ate_result, 2)
+                        print('hahai')
 
                         postfix = 'Epoch:{} | '.format(epoch)
 
@@ -445,7 +446,6 @@ class Instructor:
             test_f1 = f1_score(torch.argmax(test_apc_logits_all, -1).cpu(), test_polarities_all.cpu(),
                             labels=list(range(self.opt.polarities_dim)), average='macro')
 
-            print(test_f1)
 
             test_acc = round(test_acc * 100, 2)
             test_f1 = round(test_f1 * 100, 2)
