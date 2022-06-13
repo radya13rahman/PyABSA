@@ -193,11 +193,10 @@ class Instructor:
             self.lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=len(self.train_dataloader) * self.opt.num_epoch)
             self.warmup_scheduler = warmup.UntunedLinearWarmup(self.optimizer)
 
-        self.logger.info("***** Running training for Aspect  *****")
+        self.logger.info("***** Running training for Aspect Term Extraction  *****")
         self.logger.info("  Num examples = %d", len(self.train_data))
         self.logger.info("  Batch size = %d", self.opt.batch_size)
         self.logger.info("  Num steps = %d", self.num_train_optimization_steps)
-        self.logger.info("hahai")
         
 
         sum_loss = 0
@@ -449,7 +448,7 @@ class Instructor:
 
             test_f1 = f1_score(torch.argmax(test_apc_logits_all, -1).cpu(), test_polarities_all.cpu(),
                             labels=list(range(self.opt.polarities_dim)), average='macro')
-
+            print(test_f1)
 
             test_acc = round(test_acc * 100, 2)
             test_f1 = round(test_f1 * 100, 2)
