@@ -197,7 +197,9 @@ class Instructor:
         self.logger.info("  Num examples = %d", len(self.train_data))
         self.logger.info("  Batch size = %d", self.opt.batch_size)
         self.logger.info("  Num steps = %d", self.num_train_optimization_steps)
-        self.logger.info('hahai')
+        self.logger.info("hahai")
+        
+
         sum_loss = 0
         sum_apc_test_acc = 0
         sum_apc_test_f1 = 0
