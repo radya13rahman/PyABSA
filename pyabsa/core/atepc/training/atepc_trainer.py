@@ -197,6 +197,7 @@ class Instructor:
         self.logger.info("  Num examples = %d", len(self.train_data))
         self.logger.info("  Batch size = %d", self.opt.batch_size)
         self.logger.info("  Num steps = %d", self.num_train_optimization_steps)
+        self.logger.info('hahai')
         sum_loss = 0
         sum_apc_test_acc = 0
         sum_apc_test_f1 = 0
@@ -322,7 +323,6 @@ class Instructor:
                         postfix += 'ATE_F1: {}(max:{})'.format(current_ate_test_f1, self.opt.max_test_metrics[
                             'max_ate_test_f1'])
 
-                        postfix += 'hahai'
                     else:
                         if self.opt.save_mode and epoch >= self.opt.evaluate_begin:
                             save_model(self.opt, self.model, self.tokenizer, save_path + '_{}/'.format(loss.item()))
