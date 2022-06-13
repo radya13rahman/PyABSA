@@ -193,7 +193,7 @@ class Instructor:
             self.lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=len(self.train_dataloader) * self.opt.num_epoch)
             self.warmup_scheduler = warmup.UntunedLinearWarmup(self.optimizer)
 
-        self.logger.info("***** Running training for Aspect Term Extraction *****")
+        self.logger.info("***** Running training for Aspect  *****")
         self.logger.info("  Num examples = %d", len(self.train_data))
         self.logger.info("  Batch size = %d", self.opt.batch_size)
         self.logger.info("  Num steps = %d", self.num_train_optimization_steps)
