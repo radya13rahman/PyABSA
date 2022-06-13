@@ -22,10 +22,10 @@ import torch
 
 atepc_config = ATEPCConfigManager.get_atepc_config_english()
 
-atepc_config.pretrained_bert = 'microsoft/deberta-v3-base'
+atepc_config.pretrained_bert = 'microsoft/deberta-v3-large'
 atepc_config.lcf = 'cdm'
-# atepc_config.hidden_dim = 1024
-# atepc_config.embed_dim = 1024
+atepc_config.hidden_dim = 1024
+atepc_config.embed_dim = 1024
 atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
 atepc_config.num_epoch = 15
 dataset_path = DatasetItem('100.CustomDataset')
