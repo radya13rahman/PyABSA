@@ -15,8 +15,9 @@ import findfile
 
 from pyabsa.functional import ATEPCModelList
 from pyabsa.functional import Trainer, ATEPCTrainer
-from pyabsa.functional import ABSADatasetList
+from pyabsa.functional import ABSADatasetList, available_checkpoints
 from pyabsa.functional import ATEPCConfigManager
+from pyabsa import ATEPCCheckpointManager
 from pyabsa.functional.dataset import DatasetItem
 import torch
 
@@ -40,6 +41,11 @@ dataset_path = DatasetItem('100.CustomDataset')
 #                                 checkpoint_save_mode=1,
 #                                 auto_device=True
 #                                 ).load_trained_model()
+
+checkpoint_map = available_checkpoints(from_local=True)
+aspect_extractor = ATEPCCheckpointManager.get_aspect_extractor(checkpoint=checkpoint_map,
+                                                               auto_device=True  # False means load model on CPU
+                                                               )
 
 examples = ['But the staff was so nice to us .',
             'But the staff was so horrible to us .',
