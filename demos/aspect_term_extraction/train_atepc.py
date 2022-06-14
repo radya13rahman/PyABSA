@@ -20,16 +20,17 @@ from pyabsa.functional import ATEPCConfigManager
 from pyabsa import ATEPCCheckpointManager
 from pyabsa.functional.dataset import DatasetItem
 import torch
+import pandas as pd
 
-atepc_config = ATEPCConfigManager.get_atepc_config_english()
+# atepc_config = ATEPCConfigManager.get_atepc_config_english()
 
-atepc_config.pretrained_bert = 'microsoft/deberta-v3-base'
-atepc_config.lcf = 'cdm'
-# atepc_config.hidden_dim = 1024
-# atepc_config.embed_dim = 1024
-atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
-atepc_config.num_epoch = 15
-dataset_path = DatasetItem('100.CustomDataset')
+# atepc_config.pretrained_bert = 'microsoft/deberta-v3-base'
+# atepc_config.lcf = 'cdm'
+# # atepc_config.hidden_dim = 1024
+# # atepc_config.embed_dim = 1024
+# atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
+# atepc_config.num_epoch = 15
+# dataset_path = DatasetItem('100.CustomDataset')
 # or your local dataset: dataset_path = 'your local dataset path'
 
 # for f in findfile.find_cwd_files(['.augment.ignore'] + dataset_path):
@@ -56,8 +57,34 @@ examples = ['But the staff was so nice to us .',
             'How pretentious and inappropriate for MJ Grill to claim that it provides power lunch and dinners !'
             ]
 
+df = pd.read_excel(
+    '/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/input_dataset_model/excel/data_pasca_covid.xlsx')
+df = df.drop(columns='Unnamed: 0')
+data_df1 = pd.DataFrame(columns=['id', 'review', 'aspect_dict'])
+for name, grouped in df.groupby('Id'):
+    id = name
+    review = grouped['Text'].iloc[0]
+    aspects = grouped['Aspect']
+    sentiments = grouped['Polarity']
+    aspect_dict = {k.strip(): sentiments.iloc[index]
+                   for index, k in enumerate(aspects)}
+    data_df1 = data_df1.append(
+        {'id': id, 'review': review, 'aspect_dict': aspect_dict}, ignore_index=True)
+# new data frame with split value columns
+new = data_df1["review"].str.split(" ", n=1, expand=True)
+# making separate first name column from new data frame
+data_df1["Id"] = new[0]
+# making separate last name column from new data frame
+data_df1["new_review"] = new[1]
+# Dropping old Name columns
+data_df1.drop(columns=["review"], inplace=True)
+data_df1.drop(columns=["Id"], inplace=True)
+review_list = []
+for x in data_df1['new_review']:
+    review_list.append(x)
+
 inference_source = ABSADatasetList.Laptop14
-atepc_result = aspect_extractor.extract_aspect(inference_source=examples,
+atepc_result = aspect_extractor.extract_aspect(inference_source=review_list,
                                                save_result=True,
                                                print_result=True,  # print the result
                                                pred_sentiment=True,  # Predict the sentiment of extracted aspect terms
