@@ -22,10 +22,10 @@ import torch
 
 atepc_config = ATEPCConfigManager.get_atepc_config_english()
 
-atepc_config.pretrained_bert = 'microsoft/deberta-v3-large'
+atepc_config.pretrained_bert = 'microsoft/deberta-v3-base'
 atepc_config.lcf = 'cdm'
-atepc_config.hidden_dim = 1024
-atepc_config.embed_dim = 1024
+# atepc_config.hidden_dim = 1024
+# atepc_config.embed_dim = 1024
 atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
 atepc_config.num_epoch = 15
 dataset_path = DatasetItem('100.CustomDataset')
@@ -34,12 +34,12 @@ dataset_path = DatasetItem('100.CustomDataset')
 # for f in findfile.find_cwd_files(['.augment.ignore'] + dataset_path):
 #     os.rename(f, f.replace('.augment.ignore', '.augment'))
 
-aspect_extractor = ATEPCTrainer(config=atepc_config,
-                                dataset=dataset_path,
-                                from_checkpoint='',  # set checkpoint to train on the checkpoint.
-                                checkpoint_save_mode=1,
-                                auto_device=True
-                                ).load_trained_model()
+# aspect_extractor = ATEPCTrainer(config=atepc_config,
+#                                 dataset=dataset_path,
+#                                 from_checkpoint='',  # set checkpoint to train on the checkpoint.
+#                                 checkpoint_save_mode=1,
+#                                 auto_device=True
+#                                 ).load_trained_model()
 
 examples = ['But the staff was so nice to us .',
             'But the staff was so horrible to us .',
