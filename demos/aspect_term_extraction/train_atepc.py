@@ -29,7 +29,7 @@ atepc_config.lcf = 'cdm'
 # atepc_config.hidden_dim = 1024
 # atepc_config.embed_dim = 1024
 atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
-atepc_config.num_epoch = 1
+atepc_config.num_epoch = 10
 dataset_path = DatasetItem('100.CustomDataset')
 # or your local dataset: dataset_path = 'your local dataset path'
 
@@ -38,7 +38,7 @@ dataset_path = DatasetItem('100.CustomDataset')
 
 aspect_extractor = ATEPCTrainer(config=atepc_config,
                                 dataset=dataset_path,
-                                from_checkpoint='/content/gdrive/MyDrive/Tugas_akhir/Rombak_model/PyABSA/demos/aspect_term_extraction/checkpoints/fast_lcf_atepc_100.CustomDataset_cdm_apcacc_87.92_apcf1_80.88_atef1_71.08',  # set checkpoint to train on the checkpoint.
+                                from_checkpoint='',  # set checkpoint to train on the checkpoint.
                                 checkpoint_save_mode=1,
                                 auto_device=True
                                 ).load_trained_model()
