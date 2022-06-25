@@ -22,32 +22,32 @@ from pyabsa.functional.dataset import DatasetItem
 import torch
 import pandas as pd
 
-atepc_config = ATEPCConfigManager.get_atepc_config_english()
+# atepc_config = ATEPCConfigManager.get_atepc_config_english()
 
-atepc_config.pretrained_bert = 'microsoft/deberta-v3-large'
-atepc_config.lcf = 'cdm'
-atepc_config.optimizer = 'sgd'
-atepc_config.hidden_dim = 1024
-atepc_config.embed_dim = 1024
-atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
-atepc_config.num_epoch = 10
-dataset_path = DatasetItem('100.CustomDataset')
+# atepc_config.pretrained_bert = 'microsoft/deberta-v3-large'
+# atepc_config.lcf = 'cdm'
+# atepc_config.optimizer = 'sgd'
+# atepc_config.hidden_dim = 1024
+# atepc_config.embed_dim = 1024
+# atepc_config.model = ATEPCModelList.FAST_LCF_ATEPC
+# atepc_config.num_epoch = 10
+# dataset_path = DatasetItem('100.CustomDataset')
 # or your local dataset: dataset_path = 'your local dataset path'
 
 # for f in findfile.find_cwd_files(['.augment.ignore'] + dataset_path):
 #     os.rename(f, f.replace('.augment.ignore', '.augment'))
 
-aspect_extractor = ATEPCTrainer(config=atepc_config,
-                                dataset=dataset_path,
-                                from_checkpoint='',  # set checkpoint to train on the checkpoint.
-                                checkpoint_save_mode=1,
-                                auto_device=True
-                                ).load_trained_model()
+# aspect_extractor = ATEPCTrainer(config=atepc_config,
+#                                 dataset=dataset_path,
+#                                 from_checkpoint='',  # set checkpoint to train on the checkpoint.
+#                                 checkpoint_save_mode=1,
+#                                 auto_device=True
+#                                 ).load_trained_model()
 
 # checkpoint_map = available_checkpoints(from_local=True)
-# aspect_extractor = ATEPCCheckpointManager.get_aspect_extractor(checkpoint='/content/gdrive/MyDrive/Tugas_akhir/Rombak_model/PyABSA/demos/aspect_term_extraction/checkpoints/fast_lcf_atepc_100.CustomDataset_cdm_apcacc_85.81_apcf1_78.27_atef1_73.07',
-#                                                                auto_device=True  # False means load model on CPU
-#                                                                )
+aspect_extractor = ATEPCCheckpointManager.get_aspect_extractor(checkpoint='/content/gdrive/MyDrive/Tugas_akhir/Rombak_model/PyABSA/demos/aspect_term_extraction/checkpoints/fast_lcf_atepc_100.CustomDataset_cdm_apcacc_86.65_apcf1_79.34_atef1_73.35',
+                                                               auto_device=True  # False means load model on CPU
+                                                               )
 
 examples = ['But the staff was so nice to us .',
             'But the staff was so horrible to us .',
@@ -58,10 +58,13 @@ examples = ['But the staff was so nice to us .',
             'How pretentious and inappropriate for MJ Grill to claim that it provides power lunch and dinners !'
             ]
 
-df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dac_likupang.csv')
+df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dbc_borobudur.csv')
 df = df.drop(columns='Unnamed: 0')
+df['length'] = df['comment'].str.len()
+df = df[df['length']>1000]
+df_tes = df[:25]
 review_list = []
-for x in df['comment']:
+for x in df_tes['comment']:
     review_list.append(x)
 
 inference_source = ABSADatasetList.Laptop14
