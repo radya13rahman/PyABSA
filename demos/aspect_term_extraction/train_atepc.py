@@ -62,7 +62,7 @@ df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total
 df = df.drop(columns='Unnamed: 0')
 df['length'] = df['comment'].str.len()
 df = df[df['length']>1000]
-df_tes = df[:25]
+df_tes = df[:50]
 review_list = []
 for x in df_tes['comment']:
     review_list.append(x)
