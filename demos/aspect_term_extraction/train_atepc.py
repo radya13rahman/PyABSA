@@ -26,7 +26,7 @@ atepc_config = ATEPCConfigManager.get_atepc_config_english()
 
 atepc_config.pretrained_bert = 'microsoft/deberta-v3-large'
 atepc_config.lcf = 'cdm'
-atepc_config.optimizer = 'sgd'
+atepc_config.optimizer = 'adadelta'
 atepc_config.learning_rate = 0.002
 atepc_config.hidden_dim = 1024
 atepc_config.embed_dim = 1024
