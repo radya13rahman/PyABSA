@@ -40,7 +40,7 @@ dataset_path = DatasetItem('100.CustomDataset')
 
 aspect_extractor = ATEPCTrainer(config=atepc_config,
                                 dataset=dataset_path,
-                                from_checkpoint='/content/gdrive/MyDrive/Tugas_akhir/Rombak_model/PyABSA/demos/aspect_term_extraction/oldcek/fast_lcf_atepc_100.CustomDataset_cdm_apcacc_86.65_apcf1_79.34_atef1_73.35',  # set checkpoint to train on the checkpoint.
+                                from_checkpoint='/content/gdrive/MyDrive/Tugas_akhir/Rombak_model/PyABSA/demos/aspect_term_extraction/checkpoint/fast_lcf_atepc_100.CustomDataset_cdm_apcacc_86.65_apcf1_79.34_atef1_73.35',  # set checkpoint to train on the checkpoint.
                                 checkpoint_save_mode=1,
                                 auto_device=True
                                 ).load_trained_model()
