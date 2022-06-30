@@ -47,7 +47,7 @@ import pandas as pd
 #                                 ).load_trained_model()
 
 # checkpoint_map = available_checkpoints(from_local=True)
-aspect_extractor = ATEPCCheckpointManager.get_aspect_extractor(checkpoint='/content/gdrive/MyDrive/Tugas_akhir/Rombak_model/PyABSA/demos/aspect_term_extraction/checkpoints/fast_lcf_atepc_100.CustomDataset_cdm_apcacc_86.65_apcf1_79.34_atef1_73.35',
+aspect_extractor = ATEPCCheckpointManager.get_aspect_extractor(checkpoint='/content/gdrive/MyDrive/Tugas_akhir/Rombak_model/PyABSA/demos/aspect_term_extraction/checkpoints/fast_lcf_atepc_100.CustomDataset_cdm_apcacc_83.33_apcf1_69.26_atef1_64.8',
                                                                auto_device=True  # False means load model on CPU
                                                                )
 
