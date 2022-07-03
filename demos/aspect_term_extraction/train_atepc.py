@@ -85,7 +85,7 @@ examples = ['But the staff was so nice to us .',
 # for x in df_tes['new_review']:
 #     review_list.append(x)
 
-df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dac_borobudur.csv')
+df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dbc_borobudur.csv')
 df = df.drop(columns='Unnamed: 0')
 review_list = []
 for x in df['comment']:
