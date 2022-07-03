@@ -92,7 +92,7 @@ def cleaning_review(review):
   review = review.strip() #delete unused whitespace
   return review
 
-df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dac_labuanbajo.csv')
+df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dbc_labuanbajo.csv')
 df = df.drop(columns='Unnamed: 0')
 df['comment'] = df['comment'].astype('str')
 df['comment'] = df['comment'].apply(cleaning_review)
