@@ -60,29 +60,35 @@ examples = ['But the staff was so nice to us .',
             'How pretentious and inappropriate for MJ Grill to claim that it provides power lunch and dinners !'
             ]
 
-df = pd.read_excel('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/input_dataset_model/excel/data_pasca_covid.xlsx')
+# df = pd.read_excel('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/input_dataset_model/excel/data_pasca_covid.xlsx')
+# df = df.drop(columns='Unnamed: 0')
+# data_df1 = pd.DataFrame(columns=['id', 'review', 'aspect_dict'])
+# for name, grouped in df.groupby('Id'):
+#     id = name
+#     review = grouped['Text'].iloc[0]
+#     aspects = grouped['Aspect']
+#     sentiments = grouped['Polarity']
+#     aspect_dict = {k.strip(): sentiments.iloc[index]
+#                 for index, k in enumerate(aspects)}
+#     data_df1 = data_df1.append({'id': id, 'review': review, 'aspect_dict': aspect_dict}, ignore_index=True)
+# # new data frame with split value columns
+# new = data_df1["review"].str.split(" ", n=1, expand=True)
+# # making separate first name column from new data frame
+# data_df1["Id"] = new[0]
+# # making separate last name column from new data frame
+# data_df1["new_review"] = new[1]
+# # Dropping old Name columns
+# data_df1.drop(columns=["review"], inplace=True)
+# data_df1.drop(columns=["Id"], inplace=True)
+# review_list = []
+# df_tes = data_df1[:50]
+# for x in df_tes['new_review']:
+#     review_list.append(x)
+
+df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dac_borobudur.csv')
 df = df.drop(columns='Unnamed: 0')
-data_df1 = pd.DataFrame(columns=['id', 'review', 'aspect_dict'])
-for name, grouped in df.groupby('Id'):
-    id = name
-    review = grouped['Text'].iloc[0]
-    aspects = grouped['Aspect']
-    sentiments = grouped['Polarity']
-    aspect_dict = {k.strip(): sentiments.iloc[index]
-                for index, k in enumerate(aspects)}
-    data_df1 = data_df1.append({'id': id, 'review': review, 'aspect_dict': aspect_dict}, ignore_index=True)
-# new data frame with split value columns
-new = data_df1["review"].str.split(" ", n=1, expand=True)
-# making separate first name column from new data frame
-data_df1["Id"] = new[0]
-# making separate last name column from new data frame
-data_df1["new_review"] = new[1]
-# Dropping old Name columns
-data_df1.drop(columns=["review"], inplace=True)
-data_df1.drop(columns=["Id"], inplace=True)
 review_list = []
-df_tes = data_df1[:50]
-for x in df_tes['new_review']:
+for x in df['comment']:
     review_list.append(x)
 
 inference_source = ABSADatasetList.Laptop14
