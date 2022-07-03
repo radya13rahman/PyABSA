@@ -85,8 +85,16 @@ examples = ['But the staff was so nice to us .',
 # for x in df_tes['new_review']:
 #     review_list.append(x)
 
+import re
+def cleaning_review(review):
+  review = review.lower() #lowercase
+  review = re.sub(r'[\W_]+',' ',review) #remove unique character
+  review = review.strip() #delete unused whitespace
+  return review
+
 df = pd.read_csv('/content/gdrive/MyDrive/Tugas_akhir/Dataset_fix/csv_data_total/dbc_borobudur.csv')
 df = df.drop(columns='Unnamed: 0')
+df['comment'] = df['comment'].apply(cleaning_review)
 review_list = []
 for x in df['comment']:
     review_list.append(x)
